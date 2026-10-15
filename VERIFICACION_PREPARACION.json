@@ -1,0 +1,24 @@
+{
+  "estudiante": "Juan Manuel Ramirez",
+  "estado": "Preparado; ejecucion Docker y despliegue AWS pendientes",
+  "verificado": {
+    "pruebas_aplicacion_sqlite": 37,
+    "django_check": "sin problemas",
+    "migraciones": "sin cambios pendientes",
+    "compose_version": "v2.39.4",
+    "compose_config": "correcto; sin iniciar contenedores",
+    "sintaxis_python_shell_yaml": "correcta",
+    "generacion_env": "correcta; no sobrescribe archivo existente",
+    "debug_0_api_html_get": 405,
+    "debug_0_css_http": 200,
+    "servicio_igual_al_tutorial03": true
+  },
+  "pendiente": [
+    "Construccion y ejecucion de imagen con motor Docker",
+    "Prueba de compra contra PostgreSQL en contenedor",
+    "AWS Academy: crear/configurar EC2 y desplegar",
+    "Captura de navegador con IP publica y respuesta JSON"
+  ],
+  "recursos_aws_creados": false,
+  "captura_aws_generada": false
+}

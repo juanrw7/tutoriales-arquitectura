@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><title>Inventario HTML - Tutorial 03</title>
+<style>
+body{font-family:Arial,sans-serif;margin:24px;color:#172033;background:#f8fafc}
+h1{font-size:24px;margin-bottom:8px}p{font-size:15px;line-height:1.5}
+table{border-collapse:collapse;width:100%;background:white;font-size:14px}
+th,td{text-align:left;padding:12px 8px;border-bottom:1px solid #d5dde7}
+th{background:#e2e8f0}td.stock{font-size:24px;font-weight:bold}
+small{display:block;line-height:1.5;margin-top:18px}a{color:#174ea6}
+</style></head>
+<body><h1>Inventario HTML</h1><p>Juan Manuel Ramirez | Tutorial 03 - DRF</p>
+<p>Existencias leidas de la misma base de datos que utiliza la API.</p>
+<table><thead><tr><th>ID</th><th>Libro / precio</th><th>Stock</th></tr></thead><tbody>
+{% for libro in libros %}<tr data-libro-id="{{ libro.pk }}">
+<td>{{ libro.pk }}</td><td>{{ libro.titulo }}<br>${{ libro.precio }}</td>
+<td class="stock">{{ libro.inventario.cantidad|default:0 }}</td></tr>{% endfor %}
+</tbody></table>
+<small>Comprar desde <a href="{% url 'api_comprar' %}">la interfaz de DRF</a> o desde
+<a href="{% url 'finalizar_compra' 1 %}">la vista HTML de compra</a> utiliza el mismo
+CompraService. Recargue esta pagina despues de comprar para ver el nuevo stock.</small>
+</body></html>

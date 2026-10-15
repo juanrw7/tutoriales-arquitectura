@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><title>Factory y Builder</title></head>
+<body><h1>Compra con Factory y Builder</h1>
+<p>Demostracion academica local: seleccion de usuario sin autenticacion.</p>
+<form method="post">{% csrf_token %}
+<label>Usuario: <select name="usuario_id" required>
+{% for usuario in usuarios %}<option value="{{ usuario.pk }}">{{ usuario.username }}</option>{% endfor %}
+</select></label>
+<fieldset><legend>Productos</legend>
+{% for libro in libros %}<label><input type="checkbox" name="libros" value="{{ libro.pk }}">{{ libro.titulo }} - ${{ libro.precio }}</label><br>{% endfor %}
+</fieldset>
+<label>Direccion: <input name="direccion" maxlength="200"></label>
+<button type="submit">Comprar</button></form></body></html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="utf-8"><title>Compra rapida</title></head>
+<body>
+<h1>Compra rapida - {{ etapa|default:"Service Layer" }}</h1>
+<p>Libro: <strong>{{ libro.titulo }}</strong></p>
+<p>Precio final (IVA): ${{ total }}</p>
+<form method="post">
+{% csrf_token %}
+<button type="submit" style="background:orange">Comprar ya</button>
+</form>
+</body>
+</html>
