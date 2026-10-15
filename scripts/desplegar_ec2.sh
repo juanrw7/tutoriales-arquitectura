@@ -6,6 +6,6 @@ if [ ! -f .env ]; then
   exit 1
 fi
 docker compose config --quiet
-docker compose up -d --build --remove-orphans
+docker compose up -d --build --remove-orphans --force-recreate
 docker compose ps
-echo "Revise 'docker compose logs web nginx' y abra http://IP-PUBLICA/api/v1/comprar/"
+echo "Revise 'docker compose logs web_django pagos_flask nginx' y abra http://IP-PUBLICA/api/v1/comprar/"

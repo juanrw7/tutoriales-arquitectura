@@ -1,0 +1,5 @@
+# Solo prueba directa local de Flask; no usar en el despliegue final.
+services:
+  pagos_flask:
+    ports:
+      - "127.0.0.1:5000:5000"

@@ -12,7 +12,7 @@ import yaml
 root=Path(__file__).resolve().parent.parent
 compose=yaml.safe_load((root/'docker-compose.yml').read_text())
 assert compose['services']['db']['image']=='postgres:15'
-web=compose['services']['web']
+web=compose['services']['web_django']
 assert web['depends_on']['db']['condition']=='service_healthy'
 assert web['environment']['DB_HOST']=='db'
 assert 'ports' not in web
@@ -21,13 +21,18 @@ assert web['command'][0]=='gunicorn'
 assert web['command'][1]=='Tienda.wsgi:application'
 nginx=compose['services']['nginx']
 assert nginx['ports']==['80:80']
-assert nginx['depends_on']['web']['condition']=='service_healthy'
+assert nginx['depends_on']['web_django']['condition']=='service_healthy'
+assert nginx['depends_on']['pagos_flask']['condition']=='service_healthy'
+assert 'ports' not in compose['services']['pagos_flask']
+assert compose['services']['pagos_flask']['expose']==['5000']
 assert nginx['networks']==['edge']
 assert compose['services']['db']['networks']==['database']
 assert compose['networks']['database']['internal'] is True
 conf=(root/'nginx/nginx.conf').read_text()
-assert 'server web:8000;' in conf and 'listen 80;' in conf
-assert 'proxy_pass http://django_backend;' in conf
+assert 'server web_django:8000;' in conf and 'listen 80;' in conf
+assert 'proxy_pass http://django_v1;' in conf
+assert 'proxy_pass http://flask_v2;' in conf
+assert 'upstream=$proxy_host' in conf
 assert 'ports' not in compose['services']['db']
 assert 'postgres_data' in compose['volumes'] and 'payments_data' in compose['volumes']
 assert web['environment']['PAYMENTS_LOG_DIR']=='/app/logs'

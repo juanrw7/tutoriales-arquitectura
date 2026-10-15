@@ -46,3 +46,13 @@ class CompraAPIView(APIView):
             logger.exception("Error inesperado al comprar por API")
             return Response({"error": "Error interno"},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class ProductosAPIView(APIView):
+    """Catalogo v1 del monolito para probar coexistencia con Flask."""
+    def get(self, request):
+        from tienda_app.models import Libro
+        from .serializers import LibroSerializer
+        libros = Libro.objects.select_related("inventario").order_by("id")
+        return Response(LibroSerializer(libros, many=True).data,
+                        headers={"X-Backend": "Django-v1"})

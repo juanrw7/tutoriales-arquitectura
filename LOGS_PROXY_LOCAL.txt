@@ -1,0 +1,7 @@
+VERIFICACION LOCAL SIN DOCKER NI AWS
+127.0.0.1 [13/Oct/2026:22:42:39 -0400] "GET /health/ HTTP/1.1" 200 upstream=django_v1 addr=127.0.0.1:44477 upstream_status=200
+127.0.0.1 [13/Oct/2026:22:42:39 -0400] "GET /api/v1/productos/ HTTP/1.1" 200 upstream=django_v1 addr=127.0.0.1:44477 upstream_status=200
+127.0.0.1 [13/Oct/2026:22:42:39 -0400] "POST /api/v2/comprar HTTP/1.1" 200 upstream=flask_v2 addr=127.0.0.1:36649 upstream_status=200
+127.0.0.1 [13/Oct/2026:22:42:39 -0400] "GET /api/v1/productos/ HTTP/1.1" 200 upstream=django_v1 addr=127.0.0.1:44477 upstream_status=200
+127.0.0.1 [13/Oct/2026:22:42:39 -0400] "POST /api/v1/comprar/ HTTP/1.1" 201 upstream=django_v1 addr=127.0.0.1:44477 upstream_status=201
+127.0.0.1 [13/Oct/2026:22:42:39 -0400] "GET /api/v1/productos/ HTTP/1.1" 200 upstream=django_v1 addr=127.0.0.1:44477 upstream_status=200

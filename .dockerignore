@@ -15,3 +15,8 @@ evidencia
 entregables
 output*
 *.zip
+
+microservicio_pagos/
+*.pdf
+VERIFICACION*.json
+LOGS_PROXY_LOCAL.txt
