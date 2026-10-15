@@ -1,9 +1,10 @@
 from django.urls import path
 from .api.views import CompraAPIView
-from .views import (InventarioView, CompraPatronesView, CompraView, CompraRapidaView,
+from .views import (SaludView, InventarioView, CompraPatronesView, CompraView, CompraRapidaView,
                     CompraRapidaIntermediaView, compra_rapida_fbv)
 
 urlpatterns = [
+    path("health/", SaludView.as_view(), name="salud"),
     path("inventario/", InventarioView.as_view(), name="inventario"),
     path("compra-patrones/", CompraPatronesView.as_view(), name="compra_patrones"),
     path("compra/<int:libro_id>/", CompraView.as_view(), name="finalizar_compra"),

@@ -128,3 +128,9 @@ class InventarioView(View):
     def get(self, request):
         libros = Libro.objects.select_related("inventario").order_by("id")
         return render(request, "tienda_app/inventario.html", {"libros": libros})
+
+
+class SaludView(View):
+    def get(self, request):
+        from django.http import JsonResponse
+        return JsonResponse({"status": "ok"})

@@ -15,7 +15,19 @@ assert compose['services']['db']['image']=='postgres:15'
 web=compose['services']['web']
 assert web['depends_on']['db']['condition']=='service_healthy'
 assert web['environment']['DB_HOST']=='db'
-assert web['ports']==['8000:8000']
+assert 'ports' not in web
+assert web['expose']==['8000']
+assert web['command'][0]=='gunicorn'
+assert web['command'][1]=='Tienda.wsgi:application'
+nginx=compose['services']['nginx']
+assert nginx['ports']==['80:80']
+assert nginx['depends_on']['web']['condition']=='service_healthy'
+assert nginx['networks']==['edge']
+assert compose['services']['db']['networks']==['database']
+assert compose['networks']['database']['internal'] is True
+conf=(root/'nginx/nginx.conf').read_text()
+assert 'server web:8000;' in conf and 'listen 80;' in conf
+assert 'proxy_pass http://django_backend;' in conf
 assert 'ports' not in compose['services']['db']
 assert 'postgres_data' in compose['volumes'] and 'payments_data' in compose['volumes']
 assert web['environment']['PAYMENTS_LOG_DIR']=='/app/logs'

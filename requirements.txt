@@ -2,6 +2,7 @@ asgiref==3.12.1
 Django==5.2.18
 django-filter==26.2
 djangorestframework==3.18.3
+gunicorn==26.2.0
 Markdown==3.11.1
 psycopg2-binary==2.9.13
 PyYAML==6.0.3
